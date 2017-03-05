@@ -1,8 +1,8 @@
 # Smtp2go
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/smtp2go`. To experiment with that code, run `bin/console` for an interactive prompt.
+    Please note: this library is under active development and should be considered to be in the alpha stages. Features may change, or even outright not work. You should not use this library in its present form.
 
-TODO: Delete this and the text above, and describe your gem
+Library for interfacing with the (https://apidoc.smtp2go.com/documentation/#/README)[SMTP2Go API]
 
 ## Installation
 
@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+See disclaimer above.
 
 ## Development
 
@@ -32,7 +32,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/smtp2go.
+Bug reports and pull requests are welcome on GitHub at https://github.com/smtp2go-oss/smtp2go.
 
 
 ## License

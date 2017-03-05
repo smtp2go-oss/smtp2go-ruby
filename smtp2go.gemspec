@@ -6,12 +6,12 @@ require 'smtp2go/version'
 Gem::Specification.new do |spec|
   spec.name          = "smtp2go"
   spec.version       = Smtp2go::VERSION
-  spec.authors       = ["Dave Bush"]
-  spec.email         = ["github@david-bush.co.uk"]
+  spec.authors       = ["smtp2go"]
+  spec.email         = ["devs@smtp2go.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Library for interfacing with smtp2go API}
+  # spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.homepage      = "https://github.com/smtp2go-oss/smtp2go-ruby.git"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
