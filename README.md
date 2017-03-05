@@ -1,9 +1,6 @@
 # Smtp2go
 
-<aside class="warning">
-    Please note: this library is under active development and should be considered to be in the alpha stages. 
-    Features may change, or even outright not work. You should not use this library in its present form.
-</aside>
+**Please note: this library is under active development and should be considered to be in the alpha stages.  Features may change, or even outright not work. You should not use this library in its present form. **
 
 Library for interfacing with the [https://apidoc.smtp2go.com/documentation/#/README](SMTP2Go API)
 
