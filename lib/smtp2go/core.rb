@@ -1,4 +1,4 @@
-require 'JSON'
+require 'json'
 require 'httparty'
 require 'smtp2go/exceptions'
 require 'smtp2go/settings'
