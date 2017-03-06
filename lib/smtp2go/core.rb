@@ -11,11 +11,11 @@ module Smtp2go
 
     def send
     end
+  end
 
-    class SMTP2GoResponse
-      def initialize response
-        @response = response
-      end
+  class Smtp2goResponse
+    def initialize response
+      @response = response
     end
   end
 end
