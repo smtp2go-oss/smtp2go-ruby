@@ -1,5 +1,4 @@
-require "smtp2go/version"
+require 'smtp2go/core'
 
 module Smtp2go
-  # Your code goes here...
 end
