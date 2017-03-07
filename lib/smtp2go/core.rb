@@ -7,6 +7,8 @@ module Smtp2go
   class Smtp2goClient
     def initialize
       @api_key = ENV['SMTP2GO_API_KEY']
+      @headers = HEADERS
+      @send_endpoint = SEND_ENDPOINT
       raise SMTP2GoAPIKeyException,
         'SMTP2Go requires SMTP2GO_API_KEY Environment Variable to be set' if not @api_key
     end
@@ -19,6 +21,11 @@ module Smtp2go
         'subject' => subject,
         'text_body' => message,
       }
+      response = HTTParty.post(
+        @send_endpoint,
+        :body => JSON.dump(payload),
+        :headers => @headers)
+      return Smtp2goResponse.new response
     end
   end
 

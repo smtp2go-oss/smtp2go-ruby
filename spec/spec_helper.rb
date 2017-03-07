@@ -1,14 +1,10 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require "smtp2go"
+require 'smtp2go'
+require 'vcr'
+require 'webmock/rspec'
 
-def fake_response
-  net_http_resp = Net::HTTPResponse.new(1.0, '200', "OK")
-  net_http_resp.body = {
-    "data"=>{
-      "failures"=>[],
-      "succeeded"=>1,
-      "failed"=>0
-    },
-    "request_id"=>"4143a82e-0214-11e7-b3d0-f23c91285f72"
-  }
+VCR.configure do |c|
+    c.cassette_library_dir = 'spec/cassettes'
+    c.hook_into :webmock
+    c.configure_rspec_metadata!
 end

@@ -1,11 +1,9 @@
 require "spec_helper"
 
 describe Smtp2go::Smtp2goClient do
-
   before :each do
     ENV['SMTP2GO_API_KEY'] = 'testapikey'
     @smtp2go_client = Smtp2go::Smtp2goClient.new
-    allow(@smtp2go_client).to receive(:send).and_return(fake_response)
     @payload = {
       :sender => 'dave@example.com',
       :recipients => ['matt@example.com'],
@@ -22,42 +20,51 @@ describe Smtp2go::Smtp2goClient do
   end
 
   it 'performs a successful send' do
-    @smtp2go_client.send @payload
+    VCR.use_cassette('successful_send') do
+      @smtp2go_client.send(@payload)
+    end
   end
 
-  it 'performs a failed send' do
-  end
+  # it 'performs a failed send' do
+  #   VCR.use_cassette('failed_send') do
+  #     @smtp2go_client.send(@payload)
+  #   end
+  # end
 
-  it 'fails if the API key environment variable is not set' do
-  end
+  # it 'fails if the API key environment variable is not set' do
+  #   ENV['SMTP2GO_API_KEY'] = nil
+  #   expect(ENV['SMTP2GO_API_KEY']).to be_nil
+  #   expect {Smtp2go::Smtp2goClient.new}.to raise_error(
+  #     Smtp2goAPIKeyException)  # TODO: Refactor
+  # end
 
-  it 'attaches version headers to requests' do
-  end
+  # it 'attaches version headers to requests' do
+  #   response = @smtp2go_client.send(@payload)
+  #   headers = @smtp2go_client.headers
+  #   expect(headers.keys).to include(
+  #     'X-Smtp2go-Api', 'X-Smtp2go-Api-Version', 'Content-Type')
+  #   expect(headers.values).to include(
+  #     'smtp2go-ruby', Smtp2go::VERSION, 'application/json')
+  #   expect(a_request(:any, @smtp2go_client.send_endpoint).with {
+  #     |req| req.headers == @headers })
+  # end
 
   it 'attaches content-type to requests' do
-  end
-end
-
-
-
-class MockResponseObject
-  def initialize
-    @code = 200
-    @data = {
-      "data"=> {
-        "failures"=>[],
-        "succeeded"=>1,
-        "failed"=>0
-      },
-      "request_id"=>"4143a82e-0214-11e7-b3d0-f23c91285f72"
-    }
   end
 end
 
 describe Smtp2go::Smtp2goResponse do
 
   before :each do
-    @smtp2go_response = nil
+    # ENV['SMTP2GO_API_KEY'] = 'testapikey'
+    # @smtp2go_client = Smtp2go::Smtp2goClient.new
+    # @payload = {
+    #   :sender => 'dave@example.com',
+    #   :recipients => ['matt@example.com'],
+    #   :subject => 'smtp2go Ruby Client',
+    #   :message => 'Test message.'
+    # }
+    # @smtp2go_response = @smtp2go_client.send @payload
   end
 
   subject { @smtp2go_response }
