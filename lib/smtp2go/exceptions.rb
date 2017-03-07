@@ -1,4 +1,4 @@
 module Smtp2go
-  class SMTP2GoAPIKeyException < StandardError
+  class Smtp2goAPIKeyException < StandardError
   end
 end
