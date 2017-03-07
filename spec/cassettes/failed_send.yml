@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.smtp2go.com/v3/email/send
     body:
       encoding: UTF-8
-      string: '{"api_key":"testapikey","sender":"dave@example.com","to":["matt@example.com"],"subject":"smtp2go
+      string: '{"api_key":"invalidapikey","sender":"dave@example.com","to":["matt@example.com"],"subject":"smtp2go
         Ruby Client","text_body":"Test message."}'
     headers:
       Content-Type:
