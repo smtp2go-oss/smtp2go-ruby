@@ -62,8 +62,8 @@ describe Smtp2go::Smtp2goResponse do
       },
      "request_id"=>"97134840-02f0-11e7-a1a5-f23c91285f73"
     }
-    @error = 'The API Key passed was not in the correct format, Please check'\
-    'the key is correct and try again, The full API key can be found in the'\
+    @error = 'The API Key passed was not in the correct format, Please check '\
+    'the key is correct and try again, The full API key can be found in the '\
     'API Keys section in the admin console.'
   end
 
@@ -92,7 +92,7 @@ describe Smtp2go::Smtp2goResponse do
   end
 
   it 'makes accessible any errors' do
-    # expect(@failed_response.errors).to eq @error.strip!
+    expect(@failed_response.errors).to eq @error
   end
 
   it 'disallows access to the underlying response object' do
