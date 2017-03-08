@@ -35,7 +35,7 @@ module Smtp2go
     end
 
     def json
-      @response.parsed_response
+      JSON.parse @response.body
     end
 
     def success?
@@ -43,7 +43,7 @@ module Smtp2go
     end
 
     def errors
-      self.json['data']['errors']
+      self.json['data']['error']
     end
 
     def request_id

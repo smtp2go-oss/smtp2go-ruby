@@ -62,6 +62,9 @@ describe Smtp2go::Smtp2goResponse do
       },
      "request_id"=>"97134840-02f0-11e7-a1a5-f23c91285f73"
     }
+    @error = 'The API Key passed was not in the correct format, Please check'\
+    'the key is correct and try again, The full API key can be found in the'\
+    'API Keys section in the admin console.'
   end
 
   subject { @successful_response }
@@ -73,21 +76,33 @@ describe Smtp2go::Smtp2goResponse do
   it { should_not respond_to :response }
 
   it 'makes accessible the response JSON' do
-    expect(@successful_response.json).not_to be @response_body
+    expect(@successful_response.json).to eq @response_body
   end
 
   it 'makes accessible the success/failure of the response' do
+    expect(@successful_response.success?).to be true
   end
 
   it 'makes accessible the request ID on the response' do
+    expect(@successful_response.request_id).to eq @response_body['request_id']
   end
 
-  it 'makes accessible the HTTP response code' do
+  it 'makes accessible the HTTP status code' do
+    expect(@successful_response.status_code).to be 200
   end
 
   it 'makes accessible any errors' do
+    # expect(@failed_response.errors).to eq @error.strip!
   end
 
   it 'disallows access to the underlying response object' do
+  end
+
+  it 'returns true for a successful response' do
+    expect(@successful_response.success?).to be true
+  end
+
+  it 'returns false for a failed response' do
+    expect(@failed_response.success?).to be false
   end
 end
