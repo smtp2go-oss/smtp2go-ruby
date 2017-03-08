@@ -95,9 +95,6 @@ describe Smtp2go::Smtp2goResponse do
     expect(@failed_response.errors).to eq @error
   end
 
-  it 'disallows access to the underlying response object' do
-  end
-
   it 'returns true for a successful response' do
     expect(@successful_response.success?).to be true
   end
