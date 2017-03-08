@@ -50,9 +50,8 @@ module Smtp2go
       self.json['request_id']
     end
 
-    def response_code
+    def status_code
       @response.code
     end
-
   end
 end

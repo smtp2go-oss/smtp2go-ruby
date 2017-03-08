@@ -53,6 +53,15 @@ describe Smtp2go::Smtp2goResponse do
   before :all do
     @successful_response = get_successful_response
     @failed_response = get_failed_response
+    @response_body = {
+      "data"=>
+      {
+        "failures"=>[],
+        "succeeded"=>1,
+        "failed"=>0
+      },
+     "request_id"=>"97134840-02f0-11e7-a1a5-f23c91285f73"
+    }
   end
 
   subject { @successful_response }
@@ -60,24 +69,25 @@ describe Smtp2go::Smtp2goResponse do
   it { should respond_to :success? }
   it { should respond_to :errors }
   it { should respond_to :request_id }
-  it { should respond_to :response_code }
+  it { should respond_to :status_code }
   it { should_not respond_to :response }
 
-  # it 'makes accessible the response JSON' do
-  # end
-  #
-  # it 'makes accessible the success/failure of the response' do
-  # end
-  #
-  # it 'makes accessible the request ID on the response' do
-  # end
-  #
-  # it 'makes accessible the HTTP response code' do
-  # end
-  #
-  # it 'makes accessible any errors' do
-  # end
-  #
-  # it 'disallows access to the underlying response object' do
-  # end
+  it 'makes accessible the response JSON' do
+    expect(@successful_response.json).not_to be @response_body
+  end
+
+  it 'makes accessible the success/failure of the response' do
+  end
+
+  it 'makes accessible the request ID on the response' do
+  end
+
+  it 'makes accessible the HTTP response code' do
+  end
+
+  it 'makes accessible any errors' do
+  end
+
+  it 'disallows access to the underlying response object' do
+  end
 end
