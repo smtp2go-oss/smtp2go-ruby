@@ -5,6 +5,7 @@ require 'smtp2go/settings'
 
 module Smtp2go
   class Smtp2goClient
+    attr_reader :headers, :send_endpoint
     def initialize
       @api_key = ENV['SMTP2GO_API_KEY']
       @headers = HEADERS

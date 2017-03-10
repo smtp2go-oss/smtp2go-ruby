@@ -38,16 +38,18 @@ describe Smtp2go::Smtp2goClient do
       Smtp2go::Smtp2goAPIKeyException)  # TODO: Refactor
   end
 
-  # it 'attaches version headers to requests' do
-  #   response = @smtp2go_client.send(@payload)
-  #   headers = @smtp2go_client.headers
-  #   expect(headers.keys).to include(
-  #     'X-Smtp2go-Api', 'X-Smtp2go-Api-Version', 'Content-Type')
-  #   expect(headers.values).to include(
-  #     'smtp2go-ruby', Smtp2go::VERSION, 'application/json')
-  #   expect(a_request(:any, @smtp2go_client.send_endpoint).with {
-  #     |req| req.headers == @headers })
-  # end
+  it 'attaches version headers to requests' do
+    VCR.use_cassette('successful_send') do
+      response = @smtp2go_client.send(@payload)
+      headers = @smtp2go_client.headers
+      expect(headers.keys).to include(
+        'X-Smtp2go-Api', 'X-Smtp2go-Api-Version', 'Content-Type')
+      expect(headers.values).to include(
+        'smtp2go-ruby', Smtp2go::VERSION, 'application/json')
+      expect(a_request(:any, @smtp2go_client.send_endpoint).with {
+        |req| req.headers == @headers })
+    end
+  end
 
   it 'attaches content-type to requests' do
   end
