@@ -9,7 +9,7 @@ module Smtp2go
       @api_key = ENV['SMTP2GO_API_KEY']
       @headers = HEADERS
       @send_endpoint = SEND_ENDPOINT
-      raise SMTP2GoAPIKeyException,
+      raise Smtp2goAPIKeyException,
         'SMTP2Go requires SMTP2GO_API_KEY Environment Variable to be set' if not @api_key
     end
 

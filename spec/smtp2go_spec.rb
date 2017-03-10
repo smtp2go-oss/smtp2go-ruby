@@ -25,18 +25,18 @@ describe Smtp2go::Smtp2goClient do
     end
   end
 
-  # it 'performs a failed send' do
-  #   VCR.use_cassette('failed_send') do
-  #     @smtp2go_client.send(@payload)
-  #   end
-  # end
+  it 'performs a failed send' do
+    VCR.use_cassette('failed_send') do
+      @smtp2go_client.send(@payload)
+    end
+  end
 
-  # it 'fails if the API key environment variable is not set' do
-  #   ENV['SMTP2GO_API_KEY'] = nil
-  #   expect(ENV['SMTP2GO_API_KEY']).to be_nil
-  #   expect {Smtp2go::Smtp2goClient.new}.to raise_error(
-  #     Smtp2goAPIKeyException)  # TODO: Refactor
-  # end
+  it 'fails if the API key environment variable is not set' do
+    ENV['SMTP2GO_API_KEY'] = nil
+    expect(ENV['SMTP2GO_API_KEY']).to be_nil
+    expect {Smtp2go::Smtp2goClient.new}.to raise_error(
+      Smtp2go::Smtp2goAPIKeyException)  # TODO: Refactor
+  end
 
   # it 'attaches version headers to requests' do
   #   response = @smtp2go_client.send(@payload)
