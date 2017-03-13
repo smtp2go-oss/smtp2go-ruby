@@ -14,7 +14,8 @@ describe Smtp2go::Smtp2goClient do
 
   it 'performs a successful send' do
     VCR.use_cassette('successful_send') do
-      @smtp2go_client.send(PAYLOAD)
+      response = @smtp2go_client.send(PAYLOAD)
+      expect(response.success?).to be true
     end
   end
 
@@ -32,24 +33,24 @@ describe Smtp2go::Smtp2goClient do
   end
 
   it 'attaches version headers to requests' do
-    # expect(HTTParty).to receive(:post).with(
-    #   any_args, hash_including(:headers => Smtp2go::HEADERS))
-    # VCR.use_cassette('successful_send') do
-    #   response = @smtp2go_client.send PAYLOAD
-    #   raise response.class.to_s
-    # end
+    expect(HTTParty).to receive(:post).with(
+      any_args, hash_including(
+        :headers => Smtp2go::HEADERS)).and_return get_response_object
+    VCR.use_cassette('successful_send') do
+      response = @smtp2go_client.send(PAYLOAD)
+    end
   end
 
   it 'attaches Content-Type to requests' do
     # Check headers contain Content-Type:
     expect(Smtp2go::HEADERS).to include(
       'Content-Type' => Smtp2go::HEADERS['Content-Type'])
-    # # Check content type is sent in request:
-    # expect(HTTParty).to receive(:post).with(
-    #   any_args, hash_including(:headers => Smtp2go::HEADERS))
-    # VCR.use_cassette('successful_send') do
-    #   @smtp2go_client.send PAYLOAD
-    # end
+    expect(HTTParty).to receive(:post).with(
+      any_args, hash_including(
+        :headers => Smtp2go::HEADERS)).and_return get_response_object
+    VCR.use_cassette('successful_send') do
+      response = @smtp2go_client.send(PAYLOAD)
+    end
   end
 end
 
