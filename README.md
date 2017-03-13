@@ -1,7 +1,5 @@
 # Smtp2go
 
-**Please note: this library is under active development and should be considered to be in the alpha stages.  Features may change, or even outright not work. You should not use this library in its present form. **
-
 Library for interfacing with the [https://apidoc.smtp2go.com/documentation/#/README](SMTP2Go API)
 
 ## Installation
@@ -22,7 +20,27 @@ Or install it yourself as:
 
 ## Usage
 
-See disclaimer above.
+Sign up for a free account [here](https://www.smtp2go.com/pricing) and get an API key. At your shell, run:
+
+    $ export SMTP2GO_API_KEY="<your_API_key>"
+
+Then sending mail is as simple as:
+
+    require 'smtp2go'
+
+    smtp2go_client = Smtp2go::Smtp2goClient.new
+
+    payload = {
+      :sender=>"dave@example.com",
+      :recipients=>["matt@example.com"],
+      :subject=>"Trying out smtp2go!",
+      :message=>"Test Message"
+    }
+
+    response = smtp2go_client.send(payload)
+
+Full API documentation can be found [here](https://apidoc.smtp2go.com/documentation/#/README)
+
 
 ## Development
 
@@ -38,4 +56,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/smtp2g
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
