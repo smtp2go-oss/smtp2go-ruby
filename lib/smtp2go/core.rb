@@ -31,12 +31,14 @@ module Smtp2go
   end
 
   class Smtp2goResponse
+    attr_reader :rate_limit
     def initialize response
       @response = response
+      @rate_limit = RateLimit.new @response.headers
     end
 
     def json
-      @response.parsed_response
+      JSON.parse @response.body
     end
 
     def success?
@@ -44,16 +46,24 @@ module Smtp2go
     end
 
     def errors
-      self.json['data']['errors']
+      self.json['data']['error']
     end
 
     def request_id
       self.json['request_id']
     end
 
-    def response_code
+    def status_code
       @response.code
     end
+  end
 
+  class RateLimit
+    attr_reader :limit, :remaining, :reset
+    def initialize headers
+      @limit = headers['x-ratelimit-limit']
+      @remaining = headers['x-ratelimit-remaining']
+      @reset = headers['x-ratelimit-reset']
+    end
   end
 end
