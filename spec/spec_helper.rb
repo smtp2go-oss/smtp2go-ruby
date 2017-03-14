@@ -18,7 +18,14 @@ PAYLOAD = {
   :message => 'Test message.'
 }
 
-# Helper methods: 
+# Helper methods:
+def get_response_object
+   # Gets HTTParty response object
+  VCR.use_cassette('successful_send') do
+    HTTParty.post(Smtp2go::SEND_ENDPOINT, PAYLOAD)
+  end
+end
+
 def get_client
   ENV['SMTP2GO_API_KEY'] = 'testapikey'
   Smtp2go::Smtp2goClient.new

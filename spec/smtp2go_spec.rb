@@ -14,7 +14,8 @@ describe Smtp2go::Smtp2goClient do
 
   it 'performs a successful send' do
     VCR.use_cassette('successful_send') do
-      @smtp2go_client.send(PAYLOAD)
+      response = @smtp2go_client.send(PAYLOAD)
+      expect(response.success?).to be true
     end
   end
 
@@ -33,18 +34,23 @@ describe Smtp2go::Smtp2goClient do
 
   it 'attaches version headers to requests' do
     expect(HTTParty).to receive(:post).with(
-      any_args, hash_including(:headers => Smtp2go::HEADERS))
-    @smtp2go_client.send PAYLOAD
+      any_args, hash_including(
+        :headers => Smtp2go::HEADERS)).and_return get_response_object
+    VCR.use_cassette('successful_send') do
+      response = @smtp2go_client.send(PAYLOAD)
+    end
   end
 
   it 'attaches Content-Type to requests' do
     # Check headers contain Content-Type:
     expect(Smtp2go::HEADERS).to include(
       'Content-Type' => Smtp2go::HEADERS['Content-Type'])
-    # Check content type is sent in request:
     expect(HTTParty).to receive(:post).with(
-      any_args, hash_including(:headers => Smtp2go::HEADERS))
-    @smtp2go_client.send PAYLOAD
+      any_args, hash_including(
+        :headers => Smtp2go::HEADERS)).and_return get_response_object
+    VCR.use_cassette('successful_send') do
+      response = @smtp2go_client.send(PAYLOAD)
+    end
   end
 end
 
@@ -101,5 +107,31 @@ describe Smtp2go::Smtp2goResponse do
 
   it 'returns false for a failed response' do
     expect(@failed_response.success?).to be false
+  end
+end
+
+describe Smtp2go::RateLimit do
+  before :all do
+    @response = get_response_object
+    @rate_limit = Smtp2go::RateLimit.new @response.headers
+  end
+
+  it 'returns the rate limit' do
+    expect(@rate_limit.limit).to eq @response.headers['x-ratelimit-limit']
+  end
+
+  it 'returns the remaining rate limit' do
+    expect(@rate_limit.remaining).to eq @response.headers['x-ratelimit-remaining']
+  end
+
+  it 'returns the rate limit reset' do
+    expect(@rate_limit.reset).to eq @response.headers['x-ratelimit-reset']
+  end
+
+  it 'returns the rate limiting information when attached to Smtp2goResponse' do
+    response = Smtp2go::Smtp2goResponse.new @response
+    expect(response.rate_limit.limit).to eq @response.headers['x-ratelimit-limit']
+    expect(response.rate_limit.remaining).to eq @response.headers['x-ratelimit-remaining']
+    expect(response.rate_limit.reset).to eq @response.headers['x-ratelimit-reset']
   end
 end
