@@ -1,3 +1,11 @@
+[![Build Status](https://travis-ci.org/smtp2go-oss/smtp2go-ruby.svg?branch=master)](https://travis-ci.org/smtp2go-oss/smtp2go-ruby)
+[![Coverage Status](https://coveralls.io/repos/github/smtp2go-oss/smtp2go-ruby/badge.svg?branch=master)](https://coveralls.io/github/smtp2go-oss/smtp2go-ruby?branch=master)
+[![Gem Version](https://badge.fury.io/rb/smtp2go.svg)](https://badge.fury.io/rb/smtp2go)
+[![Dependency Status](https://gemnasium.com/badges/github.com/smtp2go-oss/smtp2go-ruby.svg)](https://gemnasium.com/github.com/smtp2go-oss/smtp2go-ruby)
+[![Code Climate](https://codeclimate.com/github/smtp2go-oss/smtp2go-ruby/badges/gpa.svg)](https://codeclimate.com/github/smtp2go-oss/smtp2go-ruby)
+[![Issue Count](https://codeclimate.com/github/smtp2go-oss/smtp2go-ruby/badges/issue_count.svg)](https://codeclimate.com/github/smtp2go-oss/smtp2go-ruby)
+[![license](https://img.shields.io/github/license/smtp2go-oss/smtp2go-ruby.svg)]()
+
 # Smtp2go
 
 **Please note: this library is under active development and should be considered to be in the alpha stages.  Features may change, or even outright not work. You should not use this library in its present form. **
