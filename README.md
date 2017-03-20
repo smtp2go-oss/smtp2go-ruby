@@ -8,7 +8,7 @@
 
 # Smtp2go
 
-Library for interfacing with the [https://apidoc.smtp2go.com/documentation/#/README](SMTP2Go API)
+Library for interfacing with the [smtp2go API](https://apidoc.smtp2go.com/documentation/#/README)
 
 ## Installation
 
