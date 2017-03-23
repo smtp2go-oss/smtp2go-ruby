@@ -1,7 +1,9 @@
 sudo: false
 language: ruby
 rvm:
-- 2.3.1
+- 2.4.1
+- 2.3.3
+- 2.2.6
 before_install: gem install bundler -v 1.13.7
 service_name: travis-ci
 # secure: maR1d3747VYqdduynw3J1rmEkjsAJk6Uotw90JFs/a7iF/Z7hNnM26Ih5yvb1mvVVWFpP7HSM8Vn+htyv4Ky5stUuAcxJVQ0PbDoGab25Eo9lV1wV0lLS1S8b/j3bSN6Ilf5aP4/F+jyb8dapvguF/eyEMNPuck7a4D36NSgECjdmZ2tAaDvyUFUHxUPzeHERHEEd/0VFxaHYEIMEoHRahloK/b5vCPZC8wWgGJJhS++cRuHCfZIYW9KQPZy94YZfD/rjJn4Qxt38NG5wBdNewV9U3I0XblDAs4P2jV2SpILdBaI6nR5QRLWW6ACh6XjYMxu5IJYzpw1vzuTbA6CCkQJYUpJlFoKRkKEVrk3G1zoBKo8CkO+mv1nP/KgyPOFuLCo0Ms83VPqfJPWMjZkP17KgK3X+gC4jgO+ODmXGHaTRAAJvgfO31vWn+DCJA/amhcBfiY5587OE/sf/Gq5Km+AQ0wRuaQN/tXz1/yLWjmq2aW6ypf8yRdzdzzEaq6tG/urMg50uXJBWuIFdZXJqT+u/W4OJDIOsNeshXzZhTw1ptN0FLMWnW4DJEfAe0GwGQgrqIWeYmCkFJgjmCZRfJpOD5t05hP6BBUfVx969PfoinSulhXQ/nJdQWJ4w2uk3uTDQQg5TAKGDkscMQF5Q7qW9KBrmNz/xoNUDFky7ok=
