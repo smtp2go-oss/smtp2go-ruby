@@ -1,5 +1,8 @@
-$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+# Before all other requirements:
 require 'coveralls'
+Coveralls.wear!
+
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'smtp2go'
 require 'vcr'
 require 'webmock/rspec'
@@ -8,22 +11,22 @@ Coveralls.wear!
 
 # Configure VCR to mock responses:
 VCR.configure do |c|
-    c.cassette_library_dir = 'spec/cassettes'
-    c.hook_into :webmock
-    c.configure_rspec_metadata!
+  c.cassette_library_dir = 'spec/cassettes'
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
 end
 
 # Constants:
 PAYLOAD = {
-  :sender => 'dave@example.com',
-  :recipients => ['matt@example.com'],
-  :subject => 'smtp2go Ruby Client',
-  :message => 'Test message.'
+  sender: 'dave@example.com',
+  recipients: ['matt@example.com'],
+  subject: 'smtp2go Ruby Client',
+  message: 'Test message.'
 }
 
 # Helper methods:
 def get_response_object
-   # Gets HTTParty response object
+  # Gets HTTParty response object
   VCR.use_cassette('successful_send') do
     HTTParty.post(Smtp2go::SEND_ENDPOINT, PAYLOAD)
   end
