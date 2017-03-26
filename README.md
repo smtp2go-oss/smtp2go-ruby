@@ -39,10 +39,10 @@ Then sending mail is as simple as:
     smtp2go_client = Smtp2go::Smtp2goClient.new
 
     payload = {
-      :sender=>"dave@example.com",
-      :recipients=>["matt@example.com"],
-      :subject=>"Trying out smtp2go!",
-      :message=>"Test Message"
+      sender: 'dave@example.com',
+      recipients: ['matt@example.com'],
+      subject: 'Trying out smtp2go!',
+      message: 'Test Message'
     }
 
     response = smtp2go_client.send(payload)
@@ -58,7 +58,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/smtp2go-oss/smtp2go.
+Bug reports and pull requests are welcome on GitHub at https://github.com/smtp2go-oss/smtp2go-ruby.
 
 
 ## License
