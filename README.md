@@ -6,9 +6,11 @@
 [![Issue Count](https://codeclimate.com/github/smtp2go-oss/smtp2go-ruby/badges/issue_count.svg)](https://codeclimate.com/github/smtp2go-oss/smtp2go-ruby)
 [![license](https://img.shields.io/github/license/smtp2go-oss/smtp2go-ruby.svg)]()
 
-# Smtp2go
+# smtp2go
 
 Library for interfacing with the [smtp2go API](https://apidoc.smtp2go.com/documentation/#/README)
+
+We also have a [Ruby on Rails Library ](https://github.com/smtp2go-oss/smtp2go-rails).
 
 ## Installation
 
@@ -32,7 +34,7 @@ Sign up for a free account [here](https://www.smtp2go.com/pricing) and get an AP
 
     $ export SMTP2GO_API_KEY="<your_API_key>"
 
-Then sending mail is as simple as:
+Then sending email is as simple as:
 
     require 'smtp2go'
 
