@@ -7,8 +7,6 @@ require 'smtp2go'
 require 'vcr'
 require 'webmock/rspec'
 
-Coveralls.wear!
-
 # Configure VCR to mock responses:
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'

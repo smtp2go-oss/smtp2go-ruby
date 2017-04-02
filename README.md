@@ -34,22 +34,53 @@ Sign up for a free account [here](https://www.smtp2go.com/pricing) and get an AP
 
     $ export SMTP2GO_API_KEY="<your_API_key>"
 
-Then sending email is as simple as:
+Here is a REPL session showing a successful send and probing of the response object:
 
-    require 'smtp2go'
+    [1] pry(main)> require 'smtp2go'
+    => true
+    [2] pry(main)> client = Smtp2go::Smtp2goClient.new
+    => #<Smtp2go::Smtp2goClient:0x007fb6ee17b108
+     @api_key="<redacted>",
+     @headers=
+      {"Content-Type"=>"application/json",
+       "X-Smtp2go-Api"=>"smtp2go-ruby",
+    [3] pry(main)> payload = {
+    [3] pry(main)*>   sender: 'dave@example.com',
+    [3] pry(main)*>   recipients: ['matt@example.com'],
+    [3] pry(main)*>   subject: 'Test Message',
+    [3] pry(main)*>   text: 'Test message',
+    [3] pry(main)*>   html: '<html><body><h1>Test HTML message</h1></body></html>'}</html>'}
 
-    smtp2go_client = Smtp2go::Smtp2goClient.new
+    => {:sender=>'dave@example.com',
+     :recipients=>['matt@example.com'],
+     :subject=>'Test Message',
+     :text=>'Test message',
+     :html=>'<html><body><h1>Test HTML message</h1></body></html>'}</html>'}
+    [4] pry(main)> response = client.send payload
+    => #<Smtp2go::Smtp2goResponse:0x007fb6ee268840
+     @rate_limit=
+      #<Smtp2go::RateLimit:0x007fb6ee268818
+       @limit="250",
+       @remaining="250",
+       @reset="51">,
+     @response=
+      {"request_id"=>"<redacted>",
+       "data"=>{"failures"=>[], "succeeded"=>1, "failed"=>0}}>
+    [5] pry(main)> response.rate_limit
+    => #<Smtp2go::RateLimit:0x007fb6ee268818
+     @limit="250",
+     @remaining="250",
+     @reset="51">
+    [6] pry(main)> response.success?
+    => true
+    [7] pry(main)> response.errors
+    => nil
+    [8] pry(main)> response.json
+    => {"request_id"=>"e469dd30-17ee-11e7-a3d9-f23c91285f72",
+     "data"=>{"failures"=>[], "succeeded"=>1, "failed"=>0}}
+    [9] pry(main)>
 
-    payload = {
-      sender: 'dave@example.com',
-      recipients: ['matt@example.com'],
-      subject: 'Trying out smtp2go!',
-      message: 'Test Message'
-    }
-
-    response = smtp2go_client.send(payload)
-
-Full API documentation can be found [here](https://apidoc.smtp2go.com/documentation/#/README)
+Full API documentation can be found [here](https://apidoc.smtp2go.com/documentation/#/README) and Ruby specific docs [here](http://www.rubydoc.info/gems/smtp2go/0.0.1) 
 
 
 ## Development
