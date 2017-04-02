@@ -54,6 +54,37 @@ describe Smtp2go::Smtp2goClient do
       @smtp2go_client.send(PAYLOAD)
     end
   end
+
+  it 'raises exception if not provided either html or text in the call to send' do
+    VCR.use_cassette('successful_send') do
+      payload = PAYLOAD.clone
+      payload[:html] = nil
+      payload[:text] = nil
+      expect { @smtp2go_client.send(payload) }.to raise_error(
+        Smtp2go::Smtp2goParameterException
+      )
+    end
+  end
+
+  it 'sends an email if html is not passed to send' do
+    VCR.use_cassette('successful_send') do
+      payload = PAYLOAD.clone
+      payload[:html] = nil
+      expect(payload[:html]).to be_nil
+      response = @smtp2go_client.send(PAYLOAD)
+      expect(response.success?).to be true
+    end
+  end
+
+  it 'sends an email if text is not passed to send' do
+    VCR.use_cassette('successful_send') do
+      payload = PAYLOAD.clone
+      payload[:text] = nil
+      expect(payload[:text]).to be_nil
+      response = @smtp2go_client.send(PAYLOAD)
+      expect(response.success?).to be true
+    end
+  end
 end
 
 describe Smtp2go::Smtp2goResponse do

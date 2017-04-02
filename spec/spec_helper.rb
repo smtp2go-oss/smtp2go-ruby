@@ -21,7 +21,8 @@ PAYLOAD = {
   sender: 'dave@example.com',
   recipients: ['matt@example.com'],
   subject: 'smtp2go Ruby Client',
-  message: 'Test message.'
+  text: 'Test message.',
+  html: '<html><body><p>Test Message</p></body></html>'
 }
 
 # Helper methods:
