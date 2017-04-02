@@ -1,8 +1,16 @@
 module Smtp2go
-  # Exception for when an API key isn't present:
-  class Smtp2goAPIKeyException < StandardError
+  class Smtp2goBaseException < StandardError
+  end
+
+  class Smtp2goAPIKeyException < Smtp2goBaseException
     def message
-      'smtp2go requires SMTP2GO_API_KEY Environment Variable to be set'
+      'Smtp2go requires SMTP2GO_API_KEY Environment Variable to be set'
+    end
+  end
+
+  class Smtp2goParameterException < Smtp2goBaseException
+    def message
+      'send call requires either text or html arguments'
     end
   end
 end
