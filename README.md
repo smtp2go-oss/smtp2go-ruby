@@ -79,7 +79,7 @@ Here is a REPL session showing a successful send and probing of the response obj
      "data"=>{"failures"=>[], "succeeded"=>1, "failed"=>0}}
     [9] pry(main)>
 
-Full API documentation can be found [here](https://apidoc.smtp2go.com/documentation/#/README), with Ruby specific docs [here](http://www.rubydoc.info/gems/smtp2go/0.0.1) 
+Full API documentation can be found [here](https://apidoc.smtp2go.com/documentation/#/README), with Ruby specific docs [here](http://www.rubydoc.info/gems/smtp2go/1.0.0) 
 
 
 ## Development
