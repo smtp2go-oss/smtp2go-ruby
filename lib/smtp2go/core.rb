@@ -16,17 +16,20 @@ module Smtp2go
     end
 
     # @param sender [String] the from email address
-    # @param recipients [Array <String>] the recipient email addresses
+    # @param recipients [Array <String>] the email address of the recipient(s)
     # @param subject [String] the email subject
-    # @param body [String] the email body
+    # @param text [String] the email text content (optional if html is passed)
+    # @param html [String] the email html content (optional if text is passed)
     # @return [Smtp2goResponse] response object
-    def send(sender:, recipients:, subject:, message:)
+    def send(sender:, recipients:, subject:, text: nil, html: nil)
+      raise Smtp2goParameterException unless [html, text].any?
       payload = {
         api_key: @api_key,
         sender: sender,
         to: recipients,
         subject: subject,
-        text_body: message
+        text_body: text,
+        html_body: html
       }
       response = HTTParty.post(
         @send_endpoint,
