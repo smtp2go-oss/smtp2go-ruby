@@ -50,7 +50,6 @@ Here is a REPL session showing a successful send and probing of the response obj
     [3] pry(main)*>   subject: 'Test Message',
     [3] pry(main)*>   text: 'Test message',
     [3] pry(main)*>   html: '<html><body><h1>Test HTML message</h1></body></html>'}</html>'}
-
     => {:sender=>'dave@example.com',
      :recipients=>['matt@example.com'],
      :subject=>'Test Message',
@@ -76,7 +75,7 @@ Here is a REPL session showing a successful send and probing of the response obj
     [7] pry(main)> response.errors
     => nil
     [8] pry(main)> response.json
-    => {"request_id"=>"e469dd30-17ee-11e7-a3d9-f23c91285f72",
+    => {"request_id"=>"<redacted>",
      "data"=>{"failures"=>[], "succeeded"=>1, "failed"=>0}}
     [9] pry(main)>
 
