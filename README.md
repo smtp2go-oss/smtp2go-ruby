@@ -10,7 +10,7 @@
 
 Library for interfacing with the [smtp2go API](https://apidoc.smtp2go.com/documentation/#/README)
 
-We also have a [Ruby on Rails Library ](https://github.com/smtp2go-oss/smtp2go-rails).
+We also have a [Ruby on Rails Library ](https://github.com/smtp2go-oss/smtp2go-rails)
 
 ## Installation
 
@@ -79,7 +79,7 @@ Here is a REPL session showing a successful send and probing of the response obj
      "data"=>{"failures"=>[], "succeeded"=>1, "failed"=>0}}
     [9] pry(main)>
 
-Full API documentation can be found [here](https://apidoc.smtp2go.com/documentation/#/README) and Ruby specific docs [here](http://www.rubydoc.info/gems/smtp2go/0.0.1) 
+Full API documentation can be found [here](https://apidoc.smtp2go.com/documentation/#/README), with Ruby specific docs [here](http://www.rubydoc.info/gems/smtp2go/0.0.1) 
 
 
 ## Development
